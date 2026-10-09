@@ -1,0 +1,42 @@
+{
+  // WebApp Studio — EXECUTION group configuration.
+  //
+  // Agents are defined as Markdown files with frontmatter under
+  // .opencode/agent/. Only global config goes here, so there's no second
+  // place to change an agent's model.
+  //
+  // IMPORTANT — model identifiers:
+  // The ids in the agent files (opencode-go/...) are the expected
+  // convention, but the OpenCode Go catalog may use different ones. Run
+  // /models in the TUI once Go is connected and fix the ids if they don't
+  // match. This is the one manual step in the repo.
+  //
+  // Quota allocation (see docs/agent-roster.md):
+  //   $60/month -> frequently used agents, one per distinct quota bucket
+  //   $15/month -> domain specialist, escalation, and closure audit only
+
+  "$schema": "https://opencode.ai/config.json",
+
+  "model": "opencode-go/kimi-k2.7-code",
+  "small_model": "opencode-go/mimo-v2.5",
+
+  "instructions": [
+    "AGENTS.md",
+    "docs/shared-rules.md"
+  ],
+
+  "permission": {
+    "edit": "allow",
+    "webfetch": "allow",
+    "bash": {
+      "*": "allow",
+      "rm -rf *": "ask",
+      "git push*": "ask",
+      "git reset --hard*": "ask",
+      "curl *": "ask"
+    }
+  },
+
+  "autoshare": false,
+  "autoupdate": true
+}
